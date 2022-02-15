@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Ramsey\Uuid\Rfc4122\UuidV4;
 
 class CreateUsersTable extends Migration
 {
@@ -20,13 +21,13 @@ class CreateUsersTable extends Migration
             $table->string('firstname');
             $table->string('lastname' , 255);
             $table->string('email')->unique();
-            $table->string('phone_number' , 13)->unique();
+            $table->string('phone_number')->unique();
             $table->date('birthday');
+            $table->uuid('uuid')->default(UuidV4::uuid4());
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
             
             // Fonctionnality
             $table->unsignedInteger('establishment');
@@ -35,11 +36,14 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('level');
             $table->foreign('level')->references('level_id')->on('levels')->restrictOnDelete()->cascadeOnUpdate();
             
-            $table->unsignedInteger('role');
+            $table->integer('role');
             $table->foreign('role')->references('role_id')->on('roles')->restrictOnDelete()->cascadeOnUpdate();
+            
+
+            $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *

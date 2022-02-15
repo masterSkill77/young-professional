@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,7 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        \App\Models\ApiKeys::factory(5)->create();
+        \App\Models\Establishment::factory(1)->create();
+        \App\Models\Level::factory(1)->create();
+        \App\Models\Role::factory(4)->create();
+        \App\Models\User::factory(10)->create();
+        \App\Models\ApiKey::factory(1)->create();
     }
 }

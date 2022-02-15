@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\ApiKeys;
+use App\Models\ApiKey as ApiKeyModel;
 use Closure;
 use Exception;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class ApiKey
             return response()->json(['error' => 'Application must use OAuth'] , 403);
         }
         try{
-            $apiKey = ApiKeys::all()->where('api_key' , '=' , $request->header('X-Auth') )->first();
+            $apiKey = ApiKeyModel::all()->where('api_key' , '=' , $request->header('X-Auth') )->first();
             if($apiKey == [])
                 return response()->json(['error' => 'Wrong ApiKey'] , 403);
             else{

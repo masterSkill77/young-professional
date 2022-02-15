@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Establishments extends Model
+class ApiKey extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['establishment_name'];
+    protected $fillable = ['api_key'];
+
+    public $timestamps = false;
 }

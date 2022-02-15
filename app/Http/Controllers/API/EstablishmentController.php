@@ -58,7 +58,14 @@ class EstablishmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $establishment = Establishments::find($id);
+            $establishment->establishment_name = $request->input('establishment_name');
+            $establishment->update();
+            return response()->json(['data' => $establishment] , 200);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()] , 403);
+        }
     }
 
     /**
@@ -69,6 +76,13 @@ class EstablishmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $establishment = Establishments::find($id);
+            $establishment->destroy();
+            return response()->json(['data' => $establishment] , 200);
+        }        
+        catch(Exception $e){
+            return response()->json(['error' => $e->getMessage()] , 403);
+        }
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\News as ModelsNews;
+use App\Models\NewLetter as ModelsNews;
 use Exception;
 use Illuminate\Http\Request;
 

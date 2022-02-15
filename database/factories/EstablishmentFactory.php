@@ -3,9 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 
-class ApiKeysFactory extends Factory
+class EstablishmentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,7 +14,7 @@ class ApiKeysFactory extends Factory
     public function definition()
     {
         return [
-            'api_key' => Hash::make($this->faker->text(25))
+            'establishment_name' => 'ENI'
         ];
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -27,7 +28,9 @@ class User extends Authenticatable
         'birthday',
         'establishment',
         'level',
-        'role'
+        'role',
+        'uuid',
+        'test_identifiant'
     ];
 
 
@@ -38,6 +41,8 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'email_verified_at',
+        'username',
         'remember_token',
     ];
 
@@ -52,20 +57,20 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->hasOne(Roles::class);
+        return $this->belongsTo(Role::class , 'role');
     }
 
     public function level()
     {
-        return $this->hasOne(Levels::class);
+        return $this->belongsTo(Level::class , 'level');
     }
 
     public function establishment()
     {
-        return $this->hasOne(Establishments::class);
+        return $this->belongsTo(Establishment::class , 'establishment');
     }
 
     public function news(){
-        return $this->hasMany(News::class);
+        return $this->hasMany(NewLetter::class);
     }
 }
